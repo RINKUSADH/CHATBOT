@@ -1,0 +1,735 @@
+<!-- <!DOCTYPE html>
+<html>
+  <title>ChatBot</title>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      body {
+        font-family: monospace;
+      }
+      h1 {
+        background-color: #8080ff;
+        color: black;
+        display: inline-block;
+        font-size: 2em;
+        margin: 0;
+        padding: 10px;
+      }
+      #chatbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        margin-top: 60px;
+      }
+      #userInput {
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        margin-top: 60px;
+      }
+      #textInput {
+        width: 90%;
+        border: none;
+        border-bottom: 3px solid black;
+        font-family: monospace;
+        font-size: 17px;
+      }
+      .userText {
+        color: black;
+        font-family: monospace;
+        font-size: 17px;
+        text-align: right;
+        line-height: 30px;
+      }
+      .userText span {
+        background-color: #e699ff;
+        padding: 10px;
+        border-radius: 2px;
+      }
+      .botText {
+        color: black;
+        font-family: monospace;
+        font-size: 17px;
+        text-align: left;
+        line-height: 30px;
+      }
+      .botText span {
+        background-color: #ffdd99;
+        padding: 10px;
+        border-radius: 2px;
+      }
+      #tidbit {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 300px;
+      }
+      .boxed {
+        margin-left: auto;
+        margin-right: auto;
+        width: 78%;
+        margin-top: 60px;
+        border: 1px solid green;
+      }
+      .box {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        AI ChatBot
+      </h1>
+    </center>
+    <div class="box"></div>
+    <div class="boxed">
+      <div>
+        <div id="chatbox">
+          <p class="botText">
+            <span>Hi! I'm ChatBot</span>
+          </p>
+        </div>
+        <div id="userInput">
+          <input id="textInput" type="text" name="msg" placeholder="Enter message here..." />
+        </div>
+      </div>
+      <script>
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        $("#textInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html> -->
+
+
+
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: scroll;
+            height: 300px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .user-message {
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #008CBA;
+            color: white;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">ChatBot</h1>
+    <div class="container" id="chatbox"></div>
+    <div style="text-align:center;">
+        <input type="text" id="user_input">
+        <button onclick="send_message()">Send</button>
+    </div>
+    <script>
+        function send_message() {
+            var user_input = document.getElementById("user_input").value;
+            document.getElementById("chatbox").innerHTML += "<div class='message user-message'><strong>You:</strong> " + user_input + "</div>";
+            document.getElementById("user_input").value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/get?msg=" + user_input, true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("chatbox").innerHTML += "<div class='message bot-message'><strong>Bot:</strong> " + response + "</div>";
+                    var chatbox = document.getElementById("chatbox");
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+</html> --> 
+
+
+
+
+<!-- IT WAS GOOG <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressive ChatBot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #141516;
+            margin: 0;
+            padding: 0;
+            color: #ecf0f1;
+        }
+        h1 {
+            text-align: center;
+            color: #fbfbfb;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #2b2e2f;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: scroll;
+            height: 300px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .user-message {
+            background-color: #949c9e;
+            color: white;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #16a085;
+            color: white;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #2c3e50;
+            margin-right: 10px;
+            color: #2c3e50;
+            outline: none;
+        }
+        /* button {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+        }
+        button:hover {
+            background-color: #c0392b;
+        } */
+    </style>
+</head>
+<body>
+    <h1>Impressive ChatBot</h1>
+    
+    <div class="container" id="chatbox">
+        <div class="message bot-message">Hello! How can I assist you today?</div>
+    </div>
+    
+    <div style="text-align:center;">
+        <input type="text" id="user_input" onkeypress="handleKeyPress(event)">
+        /*<button onclick="send_message()">Send</button>*/ 
+    </div>
+    <script>
+        function send_message() {
+            var user_input = document.getElementById("user_input").value;
+            document.getElementById("chatbox").innerHTML += "<div class='message user-message'><strong>You:</strong> " + user_input + "</div>";
+            document.getElementById("user_input").value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/get?msg=" + user_input, true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("chatbox").innerHTML += "<div class='message bot-message'><strong>Bot:</strong> " + response + "</div>";
+                    var chatbox = document.getElementById("chatbox");
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                }
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                send_message();
+            }
+        }
+    </script>
+</body>
+</html>-->
+ 
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressive ChatBot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 400px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow-y: scroll;
+            height: 300px;
+        }
+        .chat-header {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            font-size: 1.5rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .user-message {
+            background-color: #2ecc71;
+            color: white;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #3498db;
+            color: white;
+            text-align: left;
+        }
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Impressive ChatBot</div>
+        <div class="message bot-message">Hello! How can I assist you today?</div>
+        <div class="input-container">
+            <input type="text" id="user_input" onkeypress="handleKeyPress(event)">
+            <button onclick="send_message()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function send_message() {
+            var user_input = document.getElementById("user_input").value;
+            if (user_input.trim() === "") return;
+
+            document.getElementById("chatbox").innerHTML += "<div class='message user-message'><strong>You:</strong> " + user_input + "</div>";
+            document.getElementById("user_input").value = "";
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/get?msg=" + user_input, true);
+            xhr.send();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("chatbox").innerHTML += "<div class='message bot-message'><strong>Bot:</strong> " + response + "</div>";
+                    var chatbox = document.getElementById("chatbox");
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                }
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                send_message();
+            }
+        }
+    </script>
+</body>
+</html>-->
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressive ChatBot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow-y: scroll;
+            max-height: 400px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .user-message {
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: #008CBA;
+            color: white;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center; color: #333;">Impressive ChatBot</h1>
+    <div class="message bot-message">Hello! How can I assist you today?</div>
+    <div class="chat-container" id="chatbox"></div>
+    <div style="text-align:center;">
+        <input type="text" id="user_input" onkeydown="if(event.keyCode==13) send_message()">
+        <button onclick="send_message()">Send</button>
+    </div>
+    <script>
+        function send_message() {
+            var user_input = document.getElementById("user_input").value;
+
+            if (user_input.trim() === "") return; // Ignore empty messages
+
+            document.getElementById("chatbox").innerHTML += "<div class='message user-message'><strong>You:</strong> " + user_input + "</div>";
+            document.getElementById("user_input").value = "";
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/get?msg=" + user_input, true);
+            xhr.send();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("chatbox").innerHTML += "<div class='message bot-message'><strong>Bot:</strong> " + response + "</div>";
+                    var chatbox = document.getElementById("chatbox");
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Your Own Chatbot</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap">
+    <style>
+        * {
+    font-size: 1.3vw;
+    font-family: "Epilogue", sans-serif;
+  }
+  
+  html {
+    --scrollbarBG: #fff;
+    --thumbBG: #90a4ae;
+  }
+  
+  body {
+    background: #ccc;
+  }
+  body .card {
+    height: 45vw;
+    width: 35vw;
+    background-color: white;
+    margin-left: 30vw;
+    margin-top: 5vw;
+    box-shadow: 2vw 2vw 12vw 3vw #ccc;
+  }
+  body .card #header {
+    height: 5vw;
+    background: #000;
+    padding: 0vw;
+  }
+  body .card #header h1 {
+    color: #fff;
+    font-size: 2vw;
+    font-family: "Finger Paint", cursive;
+    padding: 1vw;
+  }
+  body .card #message-section::-webkit-scrollbar {
+    width: 10px;
+  }
+  body .card #message-section {
+    height: 32vw;
+    padding: 0 2.5vw;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  }
+  body .card #message-section::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+  body .card #message-section::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+  }
+  body .card #message-section #bot,
+  body .card #message-section #user {
+    position: relative;
+    bottom: 0;
+    min-height: 1.5vw;
+    border: 0.15vw solid #777;
+    background-color: #fff;
+    border-radius: 0px 1.5vw 1.5vw 1.8vw;
+    padding: 1vw;
+    margin: 1.5vw 0;
+  }
+  body .card #message-section #user {
+    border: 1.5px solid #000;
+    border-radius: 1.5vw 0vw 1.5vw 1.8vw;
+    background-color: #000;
+    float: right;
+    color: white;
+  }
+  body .card #message-section #user #user-response {
+    color: #fff;
+  }
+  body .card #message-section .message {
+    color: #000;
+    clear: both;
+    line-height: 1.2vw;
+    font-size: 1.2vw;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+    z-index: 2;
+  }
+  body .card #input-section {
+    z-index: 1;
+    padding: 0 2.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    overflow: hidden;
+    height: 6vw;
+    width: 100%;
+  }
+  body .card #input-section input {
+    color: #000;
+    min-width: 0.5vw;
+    outline: none;
+    height: 5vw;
+    width: 26vw;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #000 0.1vw;
+  }
+  body .card .send {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    margin-left: 1.4vw;
+    margin-right: 0vw;
+    padding: 0;
+    position: relative;
+    outline: none;
+  }
+  body .card .send .circle {
+    position: relative;
+    width: 4.8vw;
+    height: 4.8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body .card .send .circle i {
+    font-size: 3vw;
+    margin-left: -1vw;
+    margin-top: 1vw;
+  }
+    </style>
+ </head>
+  <body>
+<body>
+  <div class="card">
+    <div id="header">
+      <h1>Chatter box!</h1>
+    </div>
+    <div id="message-section">
+      <div class="message" id="bot"><span id="bot-response"><strong>Bot: </strong>Hello.. I'm listening! Go on..</span></div>
+    </div>
+    <div id="input-section">
+      <input id="user_input" type="text" onkeypress="handleKeyPress(event)" placeholder="Type a message" autocomplete="off" autofocus="autofocus"/>
+      <button class="send" onclick="send_message()">
+        <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+      </button>
+    </div>
+  </div>
+  
+  <script>
+    function send_message() {
+        var user_input = document.getElementById("user_input").value;
+        document.getElementById("message-section").innerHTML += "<div class='message' id='user'><strong>You: </strong>" + user_input + "</div>";
+        document.getElementById("user_input").value = "";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/get?msg=" + user_input, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                document.getElementById("message-section").innerHTML += "<div class='message' id='bot'><strong>Bot:</strong> " + response + "</div>";
+                var messagesection = document.getElementById("message-section");
+                messagesection.scrollTop = messagesection.scrollHeight;
+            }
+        }
+    }
+
+     function handleKeyPress(event) {
+         if (event.key === "Enter") {
+             send_message();
+         }
+    }
+  </script>
+  
+</body>
+</html>
